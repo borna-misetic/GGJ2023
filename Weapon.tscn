@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TestWeapon.gd" type="Script" id=1]
+[ext_resource path="res://assets/shovels/shovelHA1.png" type="Texture" id=2]
+[ext_resource path="res://assets/farmerHAND.png" type="Texture" id=3]
+[ext_resource path="res://assets/shovels/shovelH1.png" type="Texture" id=4]
+
+[node name="TestWeapon" type="StaticBody2D"]
+script = ExtResource( 1 )
+
+[node name="Hands" type="Node2D" parent="."]
+
+[node name="Handle" type="Sprite" parent="Hands"]
+position = Vector2( -2.34998, 13.2166 )
+rotation = 1.57079
+scale = Vector2( 0.65, 0.65 )
+texture = ExtResource( 2 )
+
+[node name="Tip" type="Sprite" parent="Hands"]
+position = Vector2( 18.65, 13.2166 )
+rotation = 1.57079
+scale = Vector2( 0.65, 0.65 )
+texture = ExtResource( 4 )
+
+[node name="Hand1" type="Sprite" parent="Hands"]
+position = Vector2( 8, 6 )
+texture = ExtResource( 3 )
+
+[node name="Hand2" type="Sprite" parent="Hands"]
+position = Vector2( -10, 4 )
+rotation = 0.261799
+texture = ExtResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 26, 13 )
+rotation = 4.71239
+enabled = true
+cast_to = Vector2( 1.71661e-05, 18 )
+collide_with_areas = true
+collide_with_bodies = false
