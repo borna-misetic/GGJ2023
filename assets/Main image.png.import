@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rocks lol.png-382f798bee9c670cf252af5ffa4e33f2.stex"
+path="res://.import/Main image.png-a9923008403d98c24e3f6616a3dca6bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rocks lol.png"
-dest_files=[ "res://.import/rocks lol.png-382f798bee9c670cf252af5ffa4e33f2.stex" ]
+source_file="res://assets/Main image.png"
+dest_files=[ "res://.import/Main image.png-a9923008403d98c24e3f6616a3dca6bf.stex" ]
 
 [params]
 

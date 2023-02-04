@@ -1,39 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Root.tscn" type="PackedScene" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
 
 [node name="Main" type="Node2D"]
 
 [node name="Root" parent="." instance=ExtResource( 4 )]
-position = Vector2( 576, 328 )
+position = Vector2( 544, 352 )
 
 [node name="Root2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 640, 328 )
+position = Vector2( 544, 416 )
 
 [node name="Root3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 640, 264 )
-
-[node name="Root4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 576, 264 )
+position = Vector2( 544, 480 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 440, 264 )
-scale = Vector2( 2, 2 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 448, 392 )
-scale = Vector2( 6.59574, 0.995739 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 1 )
+position = Vector2( 472, 224 )
+scale = Vector2( 1.9, 1.9 )
