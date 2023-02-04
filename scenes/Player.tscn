@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/this farmer has no arms no dick no balls.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Weapon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sounds/walk.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/dig.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/whoosh.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/light.png" type="Texture" id=7]
+[ext_resource path="res://font.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/sounds/bell.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8.5, 31.5 )
@@ -57,6 +62,69 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "fade_out"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.5, 0.0 ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 55
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 55
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+
+[sub_resource type="Animation" id=8]
+resource_name = "Spin"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TimeLabel:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 15.0, -15.0 ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 __meta__ = {
@@ -88,8 +156,65 @@ anims/walk = SubResource( 4 )
 
 [node name="WalkSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 10.0
+pitch_scale = 0.67
+
+[node name="DigSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [node name="WalkTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="SwingTimer" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = true
+
+[node name="SwooshSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="TenSecondsLeft" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="RoundTimer" type="Timer" parent="."]
+wait_time = 180.0
+one_shot = true
+
+[node name="LightAnimation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 11 )
+anims/fade_out = SubResource( 10 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 7 )
+texture_scale = 0.7
+color = Color( 1, 1, 1, 0.392157 )
+energy = 1.5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TimeTitle" type="Label" parent="CanvasLayer/Control"]
+margin_left = 64.0
+margin_top = 1000.0
+margin_right = 379.0
+margin_bottom = 1061.0
+custom_fonts/font = SubResource( 6 )
+text = "SUNSET IN: "
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Control"]
+margin_left = 379.0
+margin_top = 1000.0
+margin_right = 416.0
+margin_bottom = 1061.0
+rect_rotation = 7.06921
+rect_pivot_offset = Vector2( 50, 30.5 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="LabelAnimation" type="AnimationPlayer" parent="CanvasLayer/Control"]
+anims/RESET = SubResource( 9 )
+anims/Spin = SubResource( 8 )

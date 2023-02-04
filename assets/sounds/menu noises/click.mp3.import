@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/click.mp3-34c74c751d5a1c4fcb6ee22242d3f618.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/menu noises/click.mp3"
+dest_files=[ "res://.import/click.mp3-34c74c751d5a1c4fcb6ee22242d3f618.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

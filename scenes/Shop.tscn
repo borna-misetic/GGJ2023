@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Main image.png" type="Texture" id=1]
-[ext_resource path="res://scenes/TitleFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://scenes/NormalFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/NormalFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/TitleFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scripts/Shop.gd" type="Script" id=4]
+[ext_resource path="res://assets/sounds/Gymnopedie.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/menu noises/click.mp3" type="AudioStream" id=8]
+[ext_resource path="res://scenes/ButtonStyle.tres" type="StyleBox" id=9]
+
+[sub_resource type="Theme" id=1]
 
 [node name="Shop" type="Control"]
 anchor_right = 1.0
@@ -30,25 +36,33 @@ margin_right = 1920.0
 margin_bottom = 240.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "SHOP"
 align = 1
 valign = 1
 
 [node name="PlayButton" type="Button" parent="UI"]
-margin_left = 1600.0
+margin_left = 1472.0
 margin_top = 896.0
-margin_right = 1856.0
+margin_right = 1863.0
 margin_bottom = 1024.0
-custom_fonts/font = ExtResource( 3 )
-text = "Play"
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/focus = ExtResource( 9 )
+custom_styles/disabled = ExtResource( 9 )
+custom_styles/normal = ExtResource( 9 )
+text = "Next Day"
 
 [node name="HeadUpgradeLabel" type="Label" parent="UI"]
 margin_left = 152.0
 margin_top = 376.0
 margin_right = 822.0
 margin_bottom = 463.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "SHOVEL HEAD: 1/5"
 align = 1
 
@@ -57,7 +71,7 @@ margin_left = 976.0
 margin_top = 376.0
 margin_right = 1738.0
 margin_bottom = 463.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "SHOVEL HANDLE: 1/5"
 align = 1
 
@@ -66,7 +80,7 @@ margin_left = 280.0
 margin_top = 488.0
 margin_right = 588.0
 margin_bottom = 575.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "PRICE: 0"
 
 [node name="HandleUpgradePrice" type="Label" parent="UI"]
@@ -74,7 +88,7 @@ margin_left = 1248.0
 margin_top = 480.0
 margin_right = 1556.0
 margin_bottom = 567.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "PRICE: 0"
 
 [node name="HeadUpgradeButton" type="Button" parent="UI"]
@@ -82,7 +96,15 @@ margin_left = 336.0
 margin_top = 592.0
 margin_right = 544.0
 margin_bottom = 720.0
-custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/focus = ExtResource( 9 )
+custom_styles/disabled = ExtResource( 9 )
+custom_styles/normal = ExtResource( 9 )
 text = "BUY"
 
 [node name="HandleUpgradeButton" type="Button" parent="UI"]
@@ -90,17 +112,46 @@ margin_left = 1296.0
 margin_top = 592.0
 margin_right = 1504.0
 margin_bottom = 720.0
-custom_fonts/font = ExtResource( 3 )
+theme = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/focus = ExtResource( 9 )
+custom_styles/disabled = ExtResource( 9 )
+custom_styles/normal = ExtResource( 9 )
 text = "BUY"
 
 [node name="ResourcesLabel" type="Label" parent="UI"]
 margin_top = 232.0
 margin_right = 1920.0
 margin_bottom = 319.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "RESOURCES LEFT: 0"
 align = 1
 
+[node name="Buy" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 6 )
+
+[node name="Hover" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 8 )
+volume_db = -10.0
+pitch_scale = 0.6
+
+[node name="Press" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 8 )
+pitch_scale = 1.4
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -3.0
+autoplay = true
+
+[connection signal="mouse_entered" from="UI/PlayButton" to="UI" method="_on_PlayButton_mouse_entered"]
 [connection signal="pressed" from="UI/PlayButton" to="UI" method="_on_PlayButton_pressed"]
+[connection signal="mouse_entered" from="UI/HeadUpgradeButton" to="UI" method="_on_HeadUpgradeButton_mouse_entered"]
 [connection signal="pressed" from="UI/HeadUpgradeButton" to="UI" method="_on_HeadUpgradeButton_pressed"]
+[connection signal="mouse_entered" from="UI/HandleUpgradeButton" to="UI" method="_on_HandleUpgradeButton_mouse_entered"]
 [connection signal="pressed" from="UI/HandleUpgradeButton" to="UI" method="_on_HandleUpgradeButton_pressed"]

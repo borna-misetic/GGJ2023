@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/classical-piano-by-alkan-saltarelo-112514.mp3-141fe97635c5e36a728de074c4d0db09.mp3str"
+
+[deps]
+
+source_file="res://assets/music/classical-piano-by-alkan-saltarelo-112514.mp3"
+dest_files=[ "res://.import/classical-piano-by-alkan-saltarelo-112514.mp3-141fe97635c5e36a728de074c4d0db09.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

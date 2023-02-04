@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Gymnopedie.mp3-7ebc534095952c77c04fd437eefc3f84.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Gymnopedie.mp3"
+dest_files=[ "res://.import/Gymnopedie.mp3-7ebc534095952c77c04fd437eefc3f84.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

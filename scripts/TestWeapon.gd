@@ -21,20 +21,21 @@ func _ready():
 	match(PlayerState.HANDLE_LEVEL):
 		1:
 			handle.texture = load("res://assets/shovels/shovelHA1.png")
+			PlayerState.SHOVEL_STRENGTH = 20
 		2:
 			handle.texture = load("res://assets/shovels/shovelHA2.png")
+			PlayerState.SHOVEL_STRENGTH = 40
 		3:
 			handle.texture = load("res://assets/shovels/shovelHA3.png")
+			PlayerState.SHOVEL_STRENGTH = 60
 		4:
 			handle.texture = load("res://assets/shovels/shovelHA4.png")
+			PlayerState.SHOVEL_STRENGTH = 80
 		5:
 			handle.texture = load("res://assets/shovels/shovelHA5.png")
+			PlayerState.SHOVEL_STRENGTH = 100
 
-func _process(delta) -> void:
-	if(get_viewport().size.x/2>mouse_pos.x):
-		$".".scale.y = -1
-	if(get_viewport().size.x/2<mouse_pos.x):
-		$".".scale.y = 1
+func _process(_delta) -> void:
 	mouse_pos = get_global_mouse_position()
 	smoothing = lerp(smoothing, mouse_pos, 0.5)
 	$".".look_at(smoothing)
