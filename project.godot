@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "BlockStats",
 "language": "GDScript",
-"path": "res://BlockStats.gd"
+"path": "res://scripts/BlockStats.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -27,13 +27,17 @@ _global_script_class_icons={
 [application]
 
 config/name="GGJ2023"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PlayerState="*res://scripts/PlayerState.gd"
 
 [display]
 
-window/size/width=640
-window/size/height=480
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
