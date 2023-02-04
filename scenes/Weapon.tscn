@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/farmerHAND.png" type="Texture" id=3]
 [ext_resource path="res://assets/shovels/shovelHA1.png" type="Texture" id=4]
 
-[node name="TestWeapon" type="StaticBody2D"]
+[node name="Weapon" type="StaticBody2D"]
 script = ExtResource( 1 )
 
 [node name="Hands" type="Node2D" parent="."]
