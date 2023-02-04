@@ -89,3 +89,7 @@ anims/walk = SubResource( 4 )
 [node name="WalkSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = 10.0
+
+[node name="WalkTimer" type="Timer" parent="."]
+
+[node name="SwingTimer" type="Timer" parent="."]

@@ -17,10 +17,12 @@ func _physics_process(delta) -> void:
 	velocity.y += gravity
 	if Input.is_action_pressed("move_left"):
 		animation.play("walk")
+		$WalkSound.play()
 		velocity.x = -speed
 		$Sprite.flip_h = true
 	elif Input.is_action_pressed("move_right"):
 		velocity.x = speed
+		$WalkSound.play()
 		animation.play("walk")
 		$Sprite.flip_h = false
 	else:

@@ -14,11 +14,11 @@ resource = ExtResource( 3 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
-position = Vector2( -9.53674e-07, -9.53674e-07 )
-scale = Vector2( 2, 2 )
+position = Vector2( -1.90735e-06, -1.90735e-06 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
-hframes = 2
-vframes = 2
+hframes = 4
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
