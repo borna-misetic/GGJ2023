@@ -38,7 +38,7 @@ func _physics_process(delta) -> void:
 
 
 
-# will be used later
+# will be used later for screenshake
 func get_noise_offset(delta):
 	noise_i += delta * noise_shake_speed
 	return Vector2(

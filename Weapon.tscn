@@ -35,6 +35,6 @@ texture = ExtResource( 3 )
 position = Vector2( 26, 13 )
 rotation = 4.71239
 enabled = true
-cast_to = Vector2( 1.71661e-05, 18 )
+cast_to = Vector2( 9.53674e-06, 10 )
 collide_with_areas = true
 collide_with_bodies = false

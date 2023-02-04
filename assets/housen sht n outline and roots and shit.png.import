@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rocks lol.png-382f798bee9c670cf252af5ffa4e33f2.stex"
+path="res://.import/housen sht n outline and roots and shit.png-ed9f587e254bd5938c03b36ba4b55e24.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rocks lol.png"
-dest_files=[ "res://.import/rocks lol.png-382f798bee9c670cf252af5ffa4e33f2.stex" ]
+source_file="res://assets/housen sht n outline and roots and shit.png"
+dest_files=[ "res://.import/housen sht n outline and roots and shit.png-ed9f587e254bd5938c03b36ba4b55e24.stex" ]
 
 [params]
 
