@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://TestWeapon.gd" type="Script" id=1]
-[ext_resource path="res://assets/shovels/shovelHA1.png" type="Texture" id=2]
+[ext_resource path="res://scripts/TestWeapon.gd" type="Script" id=1]
+[ext_resource path="res://assets/shovels/shovelH1.png" type="Texture" id=2]
 [ext_resource path="res://assets/farmerHAND.png" type="Texture" id=3]
-[ext_resource path="res://assets/shovels/shovelH1.png" type="Texture" id=4]
+[ext_resource path="res://assets/shovels/shovelHA1.png" type="Texture" id=4]
 
 [node name="TestWeapon" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -14,13 +14,13 @@ script = ExtResource( 1 )
 position = Vector2( -2.34998, 13.2166 )
 rotation = 1.57079
 scale = Vector2( 0.65, 0.65 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
-[node name="Tip" type="Sprite" parent="Hands"]
+[node name="Head" type="Sprite" parent="Hands"]
 position = Vector2( 18.65, 13.2166 )
 rotation = 1.57079
 scale = Vector2( 0.65, 0.65 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 
 [node name="Hand1" type="Sprite" parent="Hands"]
 position = Vector2( 8, 6 )

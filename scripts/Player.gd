@@ -32,7 +32,7 @@ func _physics_process(delta) -> void:
 			velocity.y = jump
 	if Input.is_action_just_pressed("dig") and $Weapon/RayCast2D.get_collider():
 		if $Weapon/RayCast2D.get_collider().is_in_group("diggable"):
-			$Weapon/RayCast2D.get_collider().queue_free()
+			get_node($Weapon/RayCast2D.get_collider().get_path()).health -= 10
 			print("digging")
 	velocity = move_and_slide(velocity,Vector2.UP)
 
