@@ -20,7 +20,7 @@ var velocity := Vector2()
 var damage_number := 0
 
 func _ready():
-	$AnimationPlayer.play("fade_out")
+	
 	$RoundTimer.start(5)
 	swing_timer.start(PlayerState.SWING_TIME)
 	$CanvasLayer/Control/LabelAnimation.play("Spin")

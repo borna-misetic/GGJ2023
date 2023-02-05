@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/this farmer has no arms no dick no balls.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -59,37 +59,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
-}
-
-[sub_resource type="Animation" id=11]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Light2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.5 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "fade_out"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Light2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 1.5, 0.0 ]
 }
 
 [sub_resource type="DynamicFont" id=6]
@@ -171,15 +140,11 @@ stream = ExtResource( 6 )
 wait_time = 180.0
 one_shot = true
 
-[node name="LightAnimation" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 11 )
-anims/fade_out = SubResource( 10 )
-
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 7 )
 texture_scale = 0.7
 color = Color( 1, 1, 1, 0.392157 )
-energy = 1.5
+energy = 1.17
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
