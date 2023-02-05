@@ -1,39 +1,40 @@
 extends KinematicBody2D
 
-export var noise_shake_speed := 30.0
-export var noise_shake_strength := 30.0
+
 export var speed := 300
 export var jump := -300
 export var gravity := 9.81
+export var random_shake_strength := 5.0
+export var shake_decay_rate := 10.0
 
-onready var noise = OpenSimplexNoise.new()
+onready var camera = $Camera2D
+onready var rand = RandomNumberGenerator.new()
 onready var animation = $AnimationPlayer
 onready var weapon_position : Vector2 = $Weapon.position
 onready var swing_timer = $SwingTimer
 onready var transition_animation = get_parent().get_node("AnimationPlayer")
+onready var tween = get_node("Weapon/Tween")
+
+const indicator = preload("res://scenes/DamageIndicator.tscn")
 
 var swing_speeds = [1.6, 1.1, 0.75, 0.4, 0.2]
 
-var noise_i := 0.0
 var shake_strength := 0.0
 var velocity := Vector2()
 var damage_number := 0
 
+func apply_shake():
+	shake_strength = random_shake_strength
+
 func _ready():
-<<<<<<< HEAD
-	
-	$RoundTimer.start(5)
-=======
-	$AnimationPlayer.play("fade_out")
+	PlayerState.boss_phase = false
+	rand.randomize()
 	$RoundTimer.start(180)
->>>>>>> d0c310816d8707efe4e3056c2c15666841e1fe92
-	swing_timer.start(PlayerState.SWING_TIME)
+	swing_timer.start(swing_speeds[PlayerState.HANDLE_LEVEL-1])
 	$CanvasLayer/Control/LabelAnimation.play("Spin")
 
-func apply_shake() -> void:
-	shake_strength = noise_shake_strength
 
-func _physics_process(_delta) -> void:
+func _physics_process(delta) -> void:
 	velocity.y += gravity
 	if Input.is_action_pressed("move_left"):
 		animation.play("walk")
@@ -55,6 +56,8 @@ func _physics_process(_delta) -> void:
 	if is_on_floor():
 		if (Input.is_action_just_pressed("jump")):
 			velocity.y = jump
+		elif Input.is_action_pressed("down"):
+			set_collision_mask_bit(1, false)
 			
 	# swing
 	if Input.is_action_just_pressed("dig") and swing_timer.time_left <= 0:
@@ -62,27 +65,28 @@ func _physics_process(_delta) -> void:
 		calculate_damage()
 		swing_timer.start(swing_speeds[PlayerState.HANDLE_LEVEL-1])
 		if $Weapon/RayCast2D.get_collider() and $Weapon/RayCast2D.get_collider().is_in_group("diggable"):
+			apply_shake()
 			get_node($Weapon/RayCast2D.get_collider().get_path()).health -= damage_number
-			#print(damage_number)
+			spawn_damage(damage_number)
 			$DigSound.play()
+			
+
 	velocity = move_and_slide(velocity,Vector2.UP)
 
 
-func _process(_delta):
-	$CanvasLayer/Control/TimeLabel.text = "%d:%02d" % [floor($RoundTimer.time_left / 60), int($RoundTimer.time_left) % 60]
-	if $RoundTimer.time_left <= 0:
+func _process(delta):
+	shake_strength = lerp(shake_strength,0,shake_decay_rate*delta)
+	camera.offset = get_random_offset()
+	if PlayerState.boss_phase == false:
+		$CanvasLayer/Control/TimeLabel.text = "%d:%02d" % [floor($RoundTimer.time_left / 60), int($RoundTimer.time_left) % 60]
+	elif PlayerState.boss_phase == true:
+		$CanvasLayer/Control/TimeLabel.text = "?:??"
+	if $RoundTimer.time_left <= 0 and PlayerState.boss_phase == false:
 		transition_animation.play("fade_in")
 		yield(transition_animation,"animation_finished")
 		get_tree().change_scene("res://scenes/Shop.tscn")
 
 
-# will be used later for screenshake
-func get_noise_offset(delta):
-	noise_i += delta * noise_shake_speed
-	return Vector2(
-		noise.get_noise_2d(1,noise_i) * shake_strength,
-		noise.get_noise_2d(100,noise_i) * shake_strength
-	)
 
 func calculate_damage():
 	match(PlayerState.HEAD_LEVEL):
@@ -96,3 +100,15 @@ func calculate_damage():
 			damage_number = int(rand_range(110,125))
 		5:
 			damage_number = int(rand_range(130,160))
+
+func spawn_damage(damage: int):
+	var indicate = indicator.instance()
+	indicate.global_position = global_position
+	get_tree().current_scene.add_child(indicate)
+	indicate.label.text = str(damage)
+
+func get_random_offset() -> Vector2:
+	return Vector2(
+		rand.randf_range(-shake_strength,shake_strength),
+		rand.randf_range(-shake_strength,shake_strength)
+	)
