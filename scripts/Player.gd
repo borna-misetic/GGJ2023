@@ -20,8 +20,13 @@ var velocity := Vector2()
 var damage_number := 0
 
 func _ready():
+<<<<<<< HEAD
 	
 	$RoundTimer.start(5)
+=======
+	$AnimationPlayer.play("fade_out")
+	$RoundTimer.start(180)
+>>>>>>> d0c310816d8707efe4e3056c2c15666841e1fe92
 	swing_timer.start(PlayerState.SWING_TIME)
 	$CanvasLayer/Control/LabelAnimation.play("Spin")
 
@@ -48,7 +53,7 @@ func _physics_process(_delta) -> void:
 			$WalkSound.play()
 			$WalkTimer.start(0.2)
 	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
+		if (Input.is_action_just_pressed("jump")):
 			velocity.y = jump
 			
 	# swing
