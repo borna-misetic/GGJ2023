@@ -58,7 +58,7 @@ func _physics_process(_delta) -> void:
 		swing_timer.start(swing_speeds[PlayerState.HANDLE_LEVEL-1])
 		if $Weapon/RayCast2D.get_collider() and $Weapon/RayCast2D.get_collider().is_in_group("diggable"):
 			get_node($Weapon/RayCast2D.get_collider().get_path()).health -= damage_number
-			print(damage_number)
+			#print(damage_number)
 			$DigSound.play()
 	velocity = move_and_slide(velocity,Vector2.UP)
 
