@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex"
+path="res://.import/cult shit 5.png-2de29c54092f4dc1c69b61783590a3eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/light.png"
-dest_files=[ "res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex" ]
+source_file="res://assets/cult shit 5.png"
+dest_files=[ "res://.import/cult shit 5.png-2de29c54092f4dc1c69b61783590a3eb.stex" ]
 
 [params]
 

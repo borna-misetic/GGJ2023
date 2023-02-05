@@ -7,6 +7,9 @@
 
 [node name="Weapon" type="StaticBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Hands" type="Node2D" parent="."]
 
@@ -38,3 +41,8 @@ enabled = true
 cast_to = Vector2( 9.53674e-06, 10 )
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="TweenPoint" type="Node2D" parent="."]
+position = Vector2( 24, 0 )
+
+[node name="Tween" type="Tween" parent="."]

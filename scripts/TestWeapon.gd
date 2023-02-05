@@ -7,6 +7,8 @@ var smoothing := Vector2()
 var mouse_pos := Vector2()
 
 func _ready():
+	
+	# sp
 	match(PlayerState.HEAD_LEVEL):
 		1:
 			head.texture = load("res://assets/shovels/shovelH1.png")

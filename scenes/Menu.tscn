@@ -1,5 +1,326 @@
-[gd_scene format=2]
+[gd_scene load_steps=16 format=2]
 
-[node name="Control" type="Control"]
+[ext_resource path="res://assets/housen sht n outline.png" type="Texture" id=1]
+[ext_resource path="res://scenes/TitleFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://font.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/ButtonStyle.tres" type="StyleBox" id=4]
+[ext_resource path="res://scenes/NormalFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=6]
+[ext_resource path="res://assets/sounds/menu noises/click.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/Gymnopedie.mp3" type="AudioStream" id=8]
+[ext_resource path="res://scenes/OptionScreen.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Transition:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Transition:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Transition:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="House" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+offset = Vector2( 240, 135 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.294118 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/fade_in = SubResource( 4 )
+anims/fade_out = SubResource( 5 )
+
+[node name="OptionScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+
+[node name="Title" type="Label" parent="OptionScreen"]
+margin_left = 464.0
+margin_top = 280.0
+margin_right = 1469.0
+margin_bottom = 496.0
+custom_fonts/font = ExtResource( 2 )
+text = "SETTINGS"
+
+[node name="VideoTitle" type="Label" parent="OptionScreen"]
+margin_left = 568.0
+margin_top = 496.0
+margin_right = 832.0
+margin_bottom = 583.0
+custom_fonts/font = ExtResource( 5 )
+text = "VIDEO"
+align = 1
+valign = 1
+
+[node name="AudioTItle" type="Label" parent="OptionScreen"]
+margin_left = 1120.0
+margin_top = 496.0
+margin_right = 1384.0
+margin_bottom = 583.0
+custom_fonts/font = ExtResource( 5 )
+text = "AUDIO"
+align = 1
+valign = 1
+
+[node name="FullscreenLabel" type="Label" parent="OptionScreen"]
+margin_left = 392.0
+margin_top = 600.0
+margin_right = 863.0
+margin_bottom = 653.0
+custom_fonts/font = SubResource( 6 )
+text = "ENABLE FULLSCREEN:"
+
+[node name="AudioLabel" type="Label" parent="OptionScreen"]
+margin_left = 1112.0
+margin_top = 600.0
+margin_right = 1408.0
+margin_bottom = 653.0
+custom_fonts/font = SubResource( 6 )
+text = "AUDIO LEVEL:"
+
+[node name="HSlider" type="HSlider" parent="OptionScreen"]
+margin_left = 1024.0
+margin_top = 664.0
+margin_right = 1173.0
+margin_bottom = 680.0
+rect_scale = Vector2( 3, 3 )
+min_value = -30.0
+max_value = 0.0
+
+[node name="FullscreenButton" type="CheckBox" parent="OptionScreen"]
+margin_left = 848.0
+margin_top = 560.0
+margin_right = 872.0
+margin_bottom = 584.0
+rect_scale = Vector2( 5, 5 )
+
+[node name="ReturnButton" type="Button" parent="OptionScreen"]
+margin_left = 776.0
+margin_top = 800.0
+margin_right = 1160.0
+margin_bottom = 928.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+text = "RETURN"
+
+[node name="MainMenu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="Blight" type="Label" parent="MainMenu"]
+margin_left = 96.0
+margin_top = 72.0
+margin_right = 815.0
+margin_bottom = 288.0
+custom_fonts/font = ExtResource( 2 )
+text = "BLIGHT"
+
+[node name="Credit" type="Label" parent="MainMenu"]
+margin_left = 1272.0
+margin_top = 888.0
+margin_right = 1850.0
+margin_bottom = 1031.0
+custom_fonts/font = SubResource( 2 )
+text = "Made by Jan Puzak 
+and Borna Misetic"
+align = 2
+
+[node name="Control" type="Label" parent="MainMenu"]
+margin_left = 272.0
+margin_top = 280.0
+margin_right = 1041.0
+margin_bottom = 496.0
+custom_colors/font_color = Color( 0.470588, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "FRIGHT"
+
+[node name="PlayButton" type="Button" parent="MainMenu"]
+margin_left = 256.0
+margin_top = 576.0
+margin_right = 648.0
+margin_bottom = 704.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+text = "PLAY"
+icon_align = 1
+
+[node name="OptionsButton" type="Button" parent="MainMenu"]
+margin_left = 256.0
+margin_top = 736.0
+margin_right = 648.0
+margin_bottom = 863.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+text = "OPTIONS"
+icon_align = 1
+
+[node name="QuitButton" type="Button" parent="MainMenu"]
+margin_left = 256.0
+margin_top = 896.0
+margin_right = 648.0
+margin_bottom = 1024.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.392157, 0.392157, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+text = "QUIT"
+icon_align = 1
+
+[node name="Hover" type="AudioStreamPlayer" parent="MainMenu"]
+stream = ExtResource( 7 )
+volume_db = -10.0
+pitch_scale = 0.6
+
+[node name="Press" type="AudioStreamPlayer" parent="MainMenu"]
+stream = ExtResource( 7 )
+volume_db = -5.0
+pitch_scale = 1.4
+
+[node name="Transition" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -3.0
+autoplay = true
+
+[connection signal="value_changed" from="OptionScreen/HSlider" to="OptionScreen" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="OptionScreen/FullscreenButton" to="OptionScreen" method="_on_FullscreenButton_pressed"]
+[connection signal="mouse_entered" from="OptionScreen/ReturnButton" to="OptionScreen" method="_on_ReturnButton_mouse_entered"]
+[connection signal="pressed" from="OptionScreen/ReturnButton" to="OptionScreen" method="_on_ReturnButton_pressed"]
+[connection signal="mouse_entered" from="MainMenu/PlayButton" to="MainMenu" method="_on_PlayButton_mouse_entered"]
+[connection signal="pressed" from="MainMenu/PlayButton" to="MainMenu" method="_on_PlayButton_pressed"]
+[connection signal="mouse_entered" from="MainMenu/OptionsButton" to="MainMenu" method="_on_OptionsButton_mouse_entered"]
+[connection signal="pressed" from="MainMenu/OptionsButton" to="MainMenu" method="_on_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="MainMenu/QuitButton" to="MainMenu" method="_on_QuitButton_mouse_entered"]
+[connection signal="pressed" from="MainMenu/QuitButton" to="MainMenu" method="_on_QuitButton_pressed"]

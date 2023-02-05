@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Main image.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NormalFont.tres" type="DynamicFont" id=2]
@@ -6,10 +6,55 @@
 [ext_resource path="res://scripts/Shop.gd" type="Script" id=4]
 [ext_resource path="res://assets/sounds/Gymnopedie.mp3" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/sounds/menu noises/click.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/menu noises/click.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/ButtonStyle.tres" type="StyleBox" id=9]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
 
 [node name="Shop" type="Control"]
 anchor_right = 1.0
@@ -136,18 +181,28 @@ align = 1
 stream = ExtResource( 6 )
 
 [node name="Hover" type="AudioStreamPlayer" parent="UI"]
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 volume_db = -10.0
 pitch_scale = 0.6
 
 [node name="Press" type="AudioStreamPlayer" parent="UI"]
-stream = ExtResource( 8 )
+stream = ExtResource( 7 )
 pitch_scale = 1.4
+
+[node name="Transition" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -3.0
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
+anims/fade_out = SubResource( 4 )
 
 [connection signal="mouse_entered" from="UI/PlayButton" to="UI" method="_on_PlayButton_mouse_entered"]
 [connection signal="pressed" from="UI/PlayButton" to="UI" method="_on_PlayButton_pressed"]

@@ -10,6 +10,7 @@ onready var noise = OpenSimplexNoise.new()
 onready var animation = $AnimationPlayer
 onready var weapon_position : Vector2 = $Weapon.position
 onready var swing_timer = $SwingTimer
+onready var transition_animation = get_parent().get_node("AnimationPlayer")
 
 var swing_speeds = [1.6, 1.1, 0.75, 0.4, 0.2]
 
@@ -19,7 +20,8 @@ var velocity := Vector2()
 var damage_number := 0
 
 func _ready():
-	$RoundTimer.start(15)
+	$AnimationPlayer.play("fade_out")
+	$RoundTimer.start(5)
 	swing_timer.start(PlayerState.SWING_TIME)
 	$CanvasLayer/Control/LabelAnimation.play("Spin")
 
@@ -63,9 +65,9 @@ func _physics_process(_delta) -> void:
 
 func _process(_delta):
 	$CanvasLayer/Control/TimeLabel.text = "%d:%02d" % [floor($RoundTimer.time_left / 60), int($RoundTimer.time_left) % 60]
-	if $RoundTimer.time_left == 10:
-		$TenSecondsLeft.play()
 	if $RoundTimer.time_left <= 0:
+		transition_animation.play("fade_in")
+		yield(transition_animation,"animation_finished")
 		get_tree().change_scene("res://scenes/Shop.tscn")
 
 

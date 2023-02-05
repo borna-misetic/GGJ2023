@@ -20,6 +20,9 @@ func _ready():
 		$HandleUpgradeButton.disabled = true
 	if(PlayerState.HEAD_LEVEL == 5):
 		$HeadUpgradeButton.disabled = true
+	get_parent().get_node("AnimationPlayer").play("fade_in")
+	yield(get_parent().get_node("AnimationPlayer"),"animation_finished")
+	get_parent().get_node("Transition").visible = false
 	
 func _process(delta) -> void:
 	# lerp menu
@@ -29,6 +32,10 @@ func _process(delta) -> void:
 
 
 func _on_PlayButton_pressed():
+	$Press.play()
+	get_parent().get_node("Transition").visible = true
+	get_parent().get_node("AnimationPlayer").play("fade_out")
+	yield(get_parent().get_node("AnimationPlayer"),"animation_finished")
 	get_tree().change_scene("res://scenes/Main.tscn")
 
 
